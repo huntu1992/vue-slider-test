@@ -1,28 +1,90 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <!-- <carousel
+    :per-page="1"
+    :autoplay="true"
+    :loop="true"
+    :autoplayTimeout="3000"
+    :paginationEnabled="true"
+    :easing="'ease-in-out'"
+    :spacePadding="0"
+  >
+    <slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </slide>
+    <slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </slide>
+    <slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </slide>
+    <slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </slide>
+    <slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </slide>
+    <slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </slide>
+  </carousel> -->
+
+  <vue-glide
+    v-model="index"
+    type="carousel"
+    :startAt="0"
+    :perView="2"
+    :gap="10"
+    :rewind="true"
+    :peek="10"
+    glide:run=""
+    :run="(d) => lg(d)"
+  >
+    <vue-glide-slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </vue-glide-slide>
+    <vue-glide-slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </vue-glide-slide>
+    <vue-glide-slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </vue-glide-slide>
+    <vue-glide-slide>
+      <img src="../public/sect1_1.png" alt="이미지" />
+    </vue-glide-slide>
+    <div class="dots"></div>
+  </vue-glide>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import { Carousel, Slide } from 'vue-carousel';
+import { Glide, GlideSlide } from 'vue-glide-js';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { [Glide.name]: Glide, [GlideSlide.name]: GlideSlide },
+  methods: {
+    lg(m) {
+      console.log('ㅇㅇ', m);
+    },
+  },
+  data() {
+    return { index: 0 };
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.VueCarousel-inner {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.VueCarousel-slide {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.glide__slide--clone {
+  /* min-width: 100% !important; */
+  /* width: 100% !important; */
+  margin: 0;
 }
 </style>
